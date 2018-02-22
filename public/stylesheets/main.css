@@ -16,7 +16,7 @@
 }
 
 .movie-basic {
-    font-size: 1.5em;
+    font-size: 1.3em;
 }
 
 .movie-basic .col-md-12 {
@@ -25,4 +25,12 @@
 
 #genres {
     margin-top: 0;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
 }

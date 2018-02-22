@@ -1,3 +1,10 @@
 const imdb = require('imdb-api');
-imdb.get('Inception', {apiKey: '44e45971', timeout: 30000}).then(console.log).catch(console.log);
-// imdb.search({title: 'jumanji'}, {apiKey: '44e45971'}).then(console.log).catch(console.log);
+
+var title = 'jumanji';
+imdb.search({title: title}, {apiKey: '44e45971', timeout: 30000}).then(function (value) {
+    console.log(value.results);
+}).catch(function (error) {
+    if (error) {
+        console.log(error);
+    }
+});

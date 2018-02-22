@@ -8,12 +8,14 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="col-md-12">
-                <h2 class="pull-left"><a href="<%= movie.imdburl %>"><%= movie.title %></a></h2>
-                <h2 class="pull-right"><i><%= movie.year %></i></h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="pull-left"><a href="<%= movie.imdburl %>"><%= movie.title %></a></h2>
+                    <h2 class="pull-right"><i><%= movie.year %></i></h2>
+                </div>
             </div>
 
-            <div class="movie-basic">
+            <div class="movie-basic row">
                 <div class="col-md-12">
                     <hr><strong>Runtime: </strong><%= movie.runtime %>
                 </div>
@@ -43,8 +45,10 @@
                 </div>
             </div>
 
-            <div class="col-md-12 movie-detail">
-                <hr><p><%= movie.plot %></p>
+            <div class="movie-detail row">
+                <div class="col-md-12">
+                    <hr><p><%= movie.plot %></p>
+                </div>
             </div>
         </div>
     </div>

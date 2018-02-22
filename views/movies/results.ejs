@@ -3,20 +3,19 @@
 <div class="container">
     <header class="jumbotron">
         <div>
-            <h1>Welcome to Rotten Potatoes!</h1>
-            <hr>
-            <p>View our trusted movie review from all of the world!</p>
+            <h1>Searching result</h1>
         </div>
     </header>
     <div class="row">
         <% movies.forEach(function (value) { %>
         <div class="col-md-3 col-sm-6">
             <div class="thumbnail" id="index-header">
-                <img src="<%= value.poster %>" alt="">
+                <img src="<%= value.poster %>" alt="No Poster">
                 <div class="caption">
                     <strong><h4><%= value.title %>  (<%= value.year %>)</h4></strong>
+                    <i><%= value.type %></i>
                 </div>
-                <p><a href="/movies/<%= value.id %>" class="btn btn-primary">More Info</a></p>
+                <p><a href="/movies/<%= value.imdbid %>" class="btn btn-primary">More Info</a></p>
             </div>
         </div>
         <% }) %>

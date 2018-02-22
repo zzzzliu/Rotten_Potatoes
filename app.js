@@ -1,6 +1,7 @@
 var express = require("express"),
     app = express(),
-    mongoose = require("mongoose");
+    mongoose = require("mongoose"),
+    bodyParser = require("body-parser");
 
 var indexRoutes = require("./routes/index"),
     movieRoutes = require("./routes/movie");
@@ -9,6 +10,8 @@ var indexRoutes = require("./routes/index"),
 // configure application
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
+app.use(bodyParser.urlencoded({extended: true}));
+
 
 // configure database
 mongoose.connect("mongodb://localhost/rotten_potatoes");
