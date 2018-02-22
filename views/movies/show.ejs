@@ -1,0 +1,18 @@
+<% include ../partials/header.ejs%>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="thumbnail">
+                <img class="img-responsive" src="<%= movie.image %>" alt="The poster of <%= movie.name %>">
+                <div class="caption">
+                    <h4 class="pull-left"><a href="#"><%= movie.name %></a>  <i><%= movie.year %></i></h4>
+                    <h4 class="pull-right"><%= movie.type %></h4>
+                    <hr class="make-room"><hr class="make-room">
+                    <p><%= movie.description %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% include ../partials/footer.ejs%>

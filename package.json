@@ -1,0 +1,32 @@
+{
+  "name": "rotten_potatoes",
+  "version": "1.0.0",
+  "description": "A full stack application for users to searching, reviewing movies",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zzzzliu/Rotten_Potatoes.git"
+  },
+  "keywords": [
+    "node.js",
+    "mongodb",
+    "full-stack"
+  ],
+  "author": "Hongzhi Liu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zzzzliu/Rotten_Potatoes/issues"
+  },
+  "homepage": "https://github.com/zzzzliu/Rotten_Potatoes#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "imdb-api": "^3.1.2",
+    "mongoose": "^5.0.6",
+    "request": "^2.83.0"
+  }
+}

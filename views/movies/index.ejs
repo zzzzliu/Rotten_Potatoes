@@ -1,0 +1,26 @@
+<% include ../partials/header.ejs %>
+
+<div class="container">
+    <header class="jumbotron">
+        <div>
+            <h1>Welcome to Rotten Potatoes!</h1>
+            <hr>
+            <p>View our trusted movie review from all of the world</p>
+        </div>
+    </header>
+    <div class="row">
+        <% movies.forEach(function (value) { %>
+        <div class="col-md-3 col-sm-6">
+            <div class="thumbnail" id="index-header">
+                <img src="<%= value.image %>" alt="">
+                <div class="caption">
+                    <h4><%= value.name %>  <i>(<%= value.year %>)</i></h4>
+                </div>
+                <p><a href="/movies/<%= value["_id"] %>" class="btn btn-primary">More Info</a></p>
+            </div>
+        </div>
+        <% }) %>
+    </div>
+</div>
+
+<% include ../partials/footer.ejs %>

@@ -1,27 +1,22 @@
-var express = require("express");
-var app = express();
-var request = require("request");
+var express = require("express"),
+    app = express(),
+    mongoose = require("mongoose");
+
+var indexRoutes = require("./routes/index"),
+    movieRoutes = require("./routes/movie");
+
+
+// configure application
 app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/public"));
 
-app.get("/", function (req, res) {
-    res.render("homepage");
-});
+// configure database
+mongoose.connect("mongodb://localhost/rotten_potatoes");
 
-app.get("/results", function (req, res) {
-    var api = "http://www.omdbapi.com/?apikey=44e45971&s=" + req.query.search_term;
-    request(api, function (error, response, body) {
-       if (!error && response.statusCode === 200) {
-           var data = JSON.parse(body);
-           res.render("results", {data: data["Search"]});
-       }
-    });
+// routes
+app.use("/movies", movieRoutes);
+app.use("/", indexRoutes);
 
-});
-
-app.get("*", function (req, res) {
-    res.send("Cannot find the page.");
-});
-
-app.listen(3000, function () {
+app.listen(4000, function () {
     console.log("The Server is Running!!!");
 });
