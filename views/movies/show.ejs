@@ -4,13 +4,47 @@
     <div class="row">
         <div class="col-md-6">
             <div class="thumbnail">
-                <img class="img-responsive" src="<%= movie.image %>" alt="The poster of <%= movie.name %>">
-                <div class="caption">
-                    <h4 class="pull-left"><a href="#"><%= movie.name %></a>  <i><%= movie.year %></i></h4>
-                    <h4 class="pull-right"><%= movie.type %></h4>
-                    <hr class="make-room"><hr class="make-room">
-                    <p><%= movie.description %></p>
+                <img class="img-responsive" src="<%= movie.poster %>" alt="The poster of <%= movie.title %>">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="col-md-12">
+                <h2 class="pull-left"><a href="<%= movie.imdburl %>"><%= movie.title %></a></h2>
+                <h2 class="pull-right"><i><%= movie.year %></i></h2>
+            </div>
+
+            <div class="movie-basic">
+                <div class="col-md-12">
+                    <hr><strong>Runtime: </strong><%= movie.runtime %>
                 </div>
+                <div class="col-md-12">
+                    <strong>Language: </strong><%= movie.languages %>
+                </div>
+                <div class="col-md-12">
+                    <strong>Country: </strong><%= movie.country %>
+                </div>
+                <div class="col-md-12">
+                    <strong>Genres: </strong><%= movie.genres %>
+                </div>
+                <div class="col-md-12">
+                    <strong>Director: </strong><%= movie.director %>
+                </div>
+                <div class="col-md-12">
+                    <strong>Writer: </strong><%= movie.writer %>
+                </div>
+                <div class="col-md-12">
+                    <strong>Actors: </strong><%= movie.actors %>
+                </div>
+                <div class="col-md-12">
+                    <Strong>Awards: </Strong><%= movie.awards %>
+                </div>
+                <div class="col-md-12">
+                    <Strong>Rating: </Strong><%= movie.rating %>
+                </div>
+            </div>
+
+            <div class="col-md-12 movie-detail">
+                <hr><p><%= movie.plot %></p>
             </div>
         </div>
     </div>

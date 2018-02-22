@@ -9,3 +9,20 @@
 .make-room {
     border-color: white;
 }
+
+.movie-detail {
+    text-align: justify;
+    font-size: 1.2em;
+}
+
+.movie-basic {
+    font-size: 1.5em;
+}
+
+.movie-basic .col-md-12 {
+    margin-bottom: 0.3em;
+}
+
+#genres {
+    margin-top: 0;
+}

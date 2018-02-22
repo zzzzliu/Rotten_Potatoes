@@ -1,11 +1,48 @@
 var mongoose = require("mongoose");
 
 var MovieSchema = new mongoose.Schema({
-    name: String,
+    title: String,
+    _year_data: String,
     year: Number,
-    description: String,
+    rated: String,
+    released: String,
+    runtime: String,
+    genres: String,
+    director: String,
+    writer: String,
+    actors: String,
+    plot: String,
+    languages: String,
+    country: String,
+    awards: String,
+    poster: String,
+    ratings: [
+        {
+            Source: String,
+            Value: String
+        }
+    ],
+    metascore: String,
+    rating: String,
+    votes: String,
+    imdbid: String,
     type: String,
-    image: String
+    dvd: String,
+    boxoffice: String,
+    production: String,
+    website: String,
+    response: String,
+    series: false,
+    imdburl: String
 });
 
 module.exports = mongoose.model("Movie", MovieSchema);
+
+
+
+
+
+
+
+
+
