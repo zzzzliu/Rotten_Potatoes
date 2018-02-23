@@ -6,7 +6,8 @@ var express = require("express"),
     localStrategy = require('passport-local');
 
 var indexRoutes = require("./routes/index"),
-    movieRoutes = require("./routes/movie");
+    movieRoutes = require("./routes/movie"),
+    commentRoutes = require("./routes/comment");
 
 var User = require("./models/User");
 
@@ -40,6 +41,7 @@ app.use(function (req, res, next) {
 
 // routes
 app.use("/movies", movieRoutes);
+app.use("/movies/:id/comments", commentRoutes);
 app.use("/", indexRoutes);
 
 app.listen(4000, function () {

@@ -39,3 +39,21 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.delete-form {
+    display: inline;
+    margin-left: 1%;
+}
+
+.comment-text {
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.fa-star, .fa-star-half {
+    color: gold;
+}
+
+.comment-rating {
+    margin-left: 1%;
+}

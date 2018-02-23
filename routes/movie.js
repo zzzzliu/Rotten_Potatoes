@@ -18,13 +18,15 @@ router.get("/", function (req, res) {
 
 // Show route
 router.get("/:id", function (req, res) {
-    Movie.findById(req.params.id, function (err, movie) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.render("movies/show", {movie: movie});
+    Movie.findById(req.params.id).populate("comments").exec(
+        function (err, movie) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.render("movies/show", {movie: movie});
+            }
         }
-    });
+    );
 });
 
 // create route

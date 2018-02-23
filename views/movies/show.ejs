@@ -52,5 +52,40 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well">
+                <div class="text-right">
+                    <a class="btn btn-success" href="/movies/<%= movie._id %>/comments/new">Add a new comment</a>
+                </div>
+                <% if (movie.comments) { %>
+                    <% movie.comments.forEach(function (value) { %>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong><%= value.author.username %></strong>
+                            <span class="comment-rating">
+                                <% for (var i = 1; i <= value.rating; i++) { %>
+                                <i class="fas fa-star"></i>
+                                <% } %>
+                                <% if (value.rating * 2 % 2 === 1) { %>
+                                <i class="fas fa-star-half"></i>
+                                <% } %>
+                            </span>
+                            <span class="pull-right"><%= value.created.toDateString() %></span>
+                            <p class="comment-text"><%= value.text %></p>
+                            <% if (currentUser && value.author.id.equals(currentUser._id)) { %>
+                            <form class="delete-form pull-right" action="/movies/<%= movie._id %>/comments/<%= value.id %>?_method=DELETE" method="post">
+                                <button class="btn btn-xs btn-danger">Delete</button>
+                            </form>
+                            <a class="btn btn-xs btn-warning pull-right" href="/movies/<%= movie._id %>/comments/<%= value._id %>/edit">Edit</a>
+                            <% } %>
+                        </div>
+                    </div>
+                    <% })%>
+                <% } %>
+            </div>
+        </div>
+    </div>
 </div>
 <% include ../partials/footer.ejs%>
