@@ -14,7 +14,13 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <h2>
                         <a href="<%= movie.imdburl %>"><%= movie.title %></a>
-                        <span class="movie-year">(<%= movie.year %>)</span>
+                        <span class="movie-year">
+                            <% if (movie.year) { %>
+                            (<%= movie.year %>)
+                            <% } else if (movie._year_data) { %>
+                            (<%= movie._year_data %>)
+                            <% } %>
+                        </span>
                     </h2>
                 </div>
             </div>
