@@ -12,11 +12,21 @@
         <% movies.forEach(function (value) { %>
         <div class="col-md-3 col-sm-6">
             <div class="thumbnail" id="index-header">
-                <img src="<%= value.poster %>" alt="">
+                <a href="/movies/<%= value.id %>"><img src="<%= value.poster %>" alt=""></a>
                 <div class="caption">
-                    <strong><h4><%= value.title %>  (<%= value.year %>)</h4></strong>
+                    <a href="/movies/<%= value.id %>">
+                        <strong>
+                            <h4>
+                                <%= value.title %>
+                                <% if (value.year) { %>
+                                (<%= value.year %>)
+                                <% } else if (value._year_data) { %>
+                                (<%= value._year_data %>)
+                                <% } %>
+                            </h4>
+                        </strong>
+                    </a>
                 </div>
-                <p><a href="/movies/<%= value.id %>" class="btn btn-primary">More Info</a></p>
             </div>
         </div>
         <% }) %>

@@ -34,19 +34,21 @@ router.post("/:imdbid", function (req, res) {
     Movie.find({imdbid: req.params.imdbid}, function (err, movie) {
         if (err) {
             console.log(err);
+            req.flash("error", "Cannot find detailed information about this movie");
             res.redirect("/movies");
         } else if (movie.length === 0) {
             imdb.getById(req.params.imdbid, {apiKey: '44e45971', timeout: 30000}).then(function (value) {
                 Movie.create(value, function (err, newMovie) {
                     if (err) {
-                        console.log(err);
+                        req.flash("error", "Cannot find detailed information about this movie");
+                        res.redirect("/movies");
                     } else {
                         res.redirect("/movies/" + newMovie._id);
                     }
                 });
             }).catch(function (error) {
                 if (error) {
-                    console.log(error);
+                    req.flash("error", "Cannot find detailed information about this movie");
                     res.redirect("/movies");
                 }
             });

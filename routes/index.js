@@ -17,11 +17,11 @@ router.post("/search", function (req, res) {
     var title = req.body.title;
     imdb.search({title: title}, {apiKey: '44e45971', timeout: 30000}).then(function (value) {
         var results = value.results.sort(middleware.pushNoPosterToEnd);
-        res.render("movies/results", {errorMessage: null, movies: results});
+        res.render("movies/results", {movies: results});
     }).catch(function (error) {
         if (error) {
-            console.log(error);
-            res.render("movies/results", {errorMessage: "Cannot found the movie."});
+            req.flash("error", "Cannot found the movie");
+            res.redirect("/movies");
         }
     });
 });
@@ -35,11 +35,11 @@ router.post("/register", function (req, res) {
     var newUser = new User({username: req.body.username});
     User.register(newUser, req.body.password, function (err, user) {
         if (err) {
-            // req.flash("error", err.message);
+            req.flash("error", err.message);
             return res.redirect("/register");
         } else {
             passport.authenticate("local")(req, res, function () {
-                // req.flash("success", "Welcome to YelpCamp " + user.username);
+                req.flash("success", "Welcome to Rotten Potatoes, " + user.username);
                 res.redirect("/movies");
             });
         }
@@ -53,13 +53,15 @@ router.get("/login", function (req, res) {
 
 router.post("/login", passport.authenticate("local", {
     successRedirect: "/movies",
-    failureRedirect: "/login"
+    successFlash: "Successfully Logged In",
+    failureRedirect: "/login",
+    failureFlash: 'Invalid username or password.'
 }), function (req, res) {});
 
 // Logout Page
 router.get("/logout", function (req, res) {
     req.logout();
-    // req.flash("success", "Successfully Logged Out");
+    req.flash("success", "Successfully Logged Out");
     res.redirect("/movies");
 });
 

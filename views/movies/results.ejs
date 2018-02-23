@@ -6,9 +6,6 @@
             <h1>Searching Result</h1>
         </div>
     </header>
-    <% if (errorMessage) { %>
-    <p><%= errorMessage %></p>
-    <% } else { %>
     <div class="row">
         <% movies.forEach(function (value) { %>
             <% if (value.type != "game") { %>
@@ -16,7 +13,16 @@
                 <div class="thumbnail" id="index-header">
                     <img src="<%= value.poster %>" alt="">
                     <div class="caption">
-                        <strong><h4><%= value.title %>  (<%= value.year %>)</h4></strong>
+                        <strong>
+                            <h4>
+                                <%= value.title %>
+                                <% if (value.year) { %>
+                                (<%= value.year %>)
+                                <% } else if (value._year_data) { %>
+                                (<%= value._year_data %>)
+                                <% } %>
+                            </h4>
+                        </strong>
                         <i><%= value.type %></i>
                     </div>
                     <form action="/movies/<%= value.imdbid %>" method="post">
@@ -29,7 +35,6 @@
             <% } %>
         <% }) %>
     </div>
-    <% } %>
 </div>
 
 <% include ../partials/footer.ejs %>
