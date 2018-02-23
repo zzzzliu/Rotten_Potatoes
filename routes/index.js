@@ -28,7 +28,7 @@ router.post("/search", function (req, res) {
 
 // Register Page
 router.get("/register", function (req, res) {
-    res.render("register");
+    res.render("loginAndRegister");
 });
 
 router.post("/register", function (req, res) {
@@ -48,7 +48,7 @@ router.post("/register", function (req, res) {
 
 // Login Page
 router.get("/login", function (req, res) {
-    res.render("login");
+    res.render("loginAndRegister");
 });
 
 router.post("/login", passport.authenticate("local", {
