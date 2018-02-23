@@ -58,6 +58,10 @@
     margin-left: 1%;
 }
 
+.comment-submit {
+    margin-right: 1%;
+}
+
 .image-button {
     border: 0;
     margin: 0;
@@ -71,4 +75,13 @@ button img {
 .movie-year {
     margin-left: 1%;
     text-align: right;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.new-comment {
+    height: 25.6em;
 }
