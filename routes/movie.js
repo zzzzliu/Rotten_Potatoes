@@ -10,7 +10,7 @@ router.get("/", function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            movies = movies.sort(middleware.pushNoPosterToEnd);
+            movies = middleware.shuffle(movies).sort(middleware.pushNoPosterToEnd);
             res.render("movies/index", {movies: movies.slice(0, 16)});
         }
     });
