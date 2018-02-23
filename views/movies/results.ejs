@@ -6,20 +6,30 @@
             <h1>Searching result</h1>
         </div>
     </header>
+    <% if (errorMessage) { %>
+    <p><%= errorMessage %></p>
+    <% } else { %>
     <div class="row">
         <% movies.forEach(function (value) { %>
-        <div class="col-md-3 col-sm-6">
-            <div class="thumbnail" id="index-header">
-                <img src="<%= value.poster %>" alt="No Poster">
-                <div class="caption">
-                    <strong><h4><%= value.title %>  (<%= value.year %>)</h4></strong>
-                    <i><%= value.type %></i>
+            <% if (value.type != "game") { %>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail" id="index-header">
+                    <img src="<%= value.poster %>" alt="">
+                    <div class="caption">
+                        <strong><h4><%= value.title %>  (<%= value.year %>)</h4></strong>
+                        <i><%= value.type %></i>
+                    </div>
+                    <form action="/movies/<%= value.imdbid %>" method="post">
+                        <div class="form-group">
+                            <button class="btn btn-primary">More Info</button>
+                        </div>
+                    </form>
                 </div>
-                <p><a href="/movies/<%= value.imdbid %>" class="btn btn-primary">More Info</a></p>
             </div>
-        </div>
+            <% } %>
         <% }) %>
     </div>
+    <% } %>
 </div>
 
 <% include ../partials/footer.ejs %>

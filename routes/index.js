@@ -1,7 +1,8 @@
-var express = require("express");
-var router = express.Router();
-var request = require("request");
-var imdb = require("imdb-api");
+var express = require("express"),
+    router = express.Router(),
+    imdb = require("imdb-api"),
+    middleware = require("../middleware");
+
 
 // All the basic pages, e.g. homepage, not found page
 router.get("/", function (req, res) {
@@ -11,11 +12,12 @@ router.get("/", function (req, res) {
 router.post("/search", function (req, res) {
     var title = req.body.title;
     imdb.search({title: title}, {apiKey: '44e45971', timeout: 30000}).then(function (value) {
-        res.render("movies/results", {movies: value.results});
+        var results = value.results.sort(middleware.pushNoPosterToEnd);
+        res.render("movies/results", {errorMessage: null, movies: results});
     }).catch(function (error) {
         if (error) {
             console.log(error);
-            res.redirect("back");
+            res.render("movies/results", {errorMessage: "Cannot found the movie."});
         }
     });
 });
