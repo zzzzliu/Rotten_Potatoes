@@ -2,58 +2,62 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-sm-12 col-xs-12">
             <div class="thumbnail">
-                <img class="img-responsive" src="<%= movie.poster %>" alt="The poster of <%= movie.title %>">
+                <a href="<%= movie.imdburl %>">
+                    <img class="img-responsive" src="<%= movie.poster %>" alt="The poster of <%= movie.title %>">
+                </a>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 col-sm-12 col-xs-12">
             <div class="row">
-                <div class="col-md-12">
-                    <h2 class="pull-left"><a href="<%= movie.imdburl %>"><%= movie.title %></a></h2>
-                    <h2 class="pull-right"><i><%= movie.year %></i></h2>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <h2>
+                        <a href="<%= movie.imdburl %>"><%= movie.title %></a>
+                        <span class="movie-year">(<%= movie.year %>)</span>
+                    </h2>
                 </div>
             </div>
 
             <div class="movie-basic row">
-                <div class="col-md-12">
+                <div class="col-md-12 col-sm-12 col-xs-12">
                     <hr><strong>Runtime: </strong><%= movie.runtime %>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 col-sm-12 col-xs-12">
                     <strong>Language: </strong><%= movie.languages %>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 col-sm-12 col-xs-12">
                     <strong>Country: </strong><%= movie.country %>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 col-sm-12 col-xs-12">
                     <strong>Genres: </strong><%= movie.genres %>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 col-sm-12 col-xs-12">
                     <strong>Director: </strong><%= movie.director %>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 col-sm-12 col-xs-12">
                     <strong>Writer: </strong><%= movie.writer %>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 col-sm-12 col-xs-12">
                     <strong>Actors: </strong><%= movie.actors %>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 col-sm-12 col-xs-12">
                     <Strong>Awards: </Strong><%= movie.awards %>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 col-sm-12 col-xs-12">
                     <Strong>Rating: </Strong><%= movie.rating %> (<a href="https://www.imdb.com/">IMDB</a>)
                 </div>
             </div>
 
             <div class="movie-detail row">
-                <div class="col-md-12">
+                <div class="col-md-12 col-sm-12 col-xs-12">
                     <hr><p><%= movie.plot %></p>
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="well">
                 <div class="text-right">
                     <a class="btn btn-success" href="/movies/<%= movie._id %>/comments/new">Add a new comment</a>

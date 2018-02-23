@@ -57,3 +57,18 @@
 .comment-rating {
     margin-left: 1%;
 }
+
+.image-button {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+button img {
+    width: 100%;
+}
+
+.movie-year {
+    margin-left: 1%;
+    text-align: right;
+}

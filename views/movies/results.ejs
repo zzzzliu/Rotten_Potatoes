@@ -11,25 +11,30 @@
             <% if (value.type != "game") { %>
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail" id="index-header">
-                    <img src="<%= value.poster %>" alt="">
+                    <form action="/movies/<%= value.imdbid %>" method="post">
+                        <button class="image-button">
+                            <img src="<%= value.poster %>" alt="">
+                        </button>
+                    </form>
                     <div class="caption">
-                        <strong>
-                            <h4>
-                                <%= value.title %>
-                                <% if (value.year) { %>
-                                (<%= value.year %>)
-                                <% } else if (value._year_data) { %>
-                                (<%= value._year_data %>)
-                                <% } %>
-                            </h4>
-                        </strong>
+                        <form action="/movies/<%= value.imdbid %>" method="post">
+                            <button class="image-button">
+                                <a href="#">
+                                    <strong>
+                                        <h4>
+                                            <%= value.title %>
+                                            <% if (value.year) { %>
+                                            (<%= value.year %>)
+                                            <% } else if (value._year_data) { %>
+                                            (<%= value._year_data %>)
+                                            <% } %>
+                                        </h4>
+                                    </strong>
+                                </a>
+                            </button>
+                        </form>
                         <i><%= value.type %></i>
                     </div>
-                    <form action="/movies/<%= value.imdbid %>" method="post">
-                        <div class="form-group">
-                            <button class="btn btn-primary">More Info</button>
-                        </div>
-                    </form>
                 </div>
             </div>
             <% } %>

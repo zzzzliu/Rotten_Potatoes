@@ -28,11 +28,11 @@
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <% if (!currentUser) { %>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/register">Sign Up</a></li>
+                <li><a href="/login"><i class="fas fa-play"></i> Login</a></li>
+                <li><a href="/register"><i class="fas fa-film"></i> Sign Up</a></li>
                 <% } else { %>
-                <li><a href="#"><%= currentUser.username %></a></li>
-                <li><a href="/logout">Logout</a></li>
+                <li><a href="#"><i class="fab fa-earlybirds"></i> <%= currentUser.username %></a></li>
+                <li><a href="/logout"><i class="far fa-stop-circle"></i> Logout</a></li>
                 <% } %>
             </ul>
         </div>
