@@ -9,7 +9,8 @@ var express = require("express"),
 
 var indexRoutes = require("./routes/index"),
     movieRoutes = require("./routes/movie"),
-    commentRoutes = require("./routes/comment");
+    commentRoutes = require("./routes/comment"),
+    userRoutes = require("./routes/user");
 
 var User = require("./models/User");
 
@@ -48,6 +49,7 @@ app.use(function (req, res, next) {
 // routes
 app.use("/movies", movieRoutes);
 app.use("/movies/:id/comments", commentRoutes);
+app.use("/users/", userRoutes);
 app.use("/", indexRoutes);
 
 app.listen(process.env.PORT || 4000, function () {

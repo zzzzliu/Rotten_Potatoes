@@ -3,8 +3,10 @@ var mongoose = require("mongoose"),
 
 var userSchema = new mongoose.Schema({
     username: String,
+    realname: String,
     password: String,
-    about: String
+    about: String,
+    created: {type: Date, default: Date.now}
 });
 
 userSchema.plugin(passportLocalMongoose);

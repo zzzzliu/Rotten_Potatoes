@@ -85,3 +85,7 @@ iframe {
 .new-comment, .edit-comment {
     display: none;
 }
+
+.comment-heading-at-userpage {
+    margin-bottom: 1%;
+}

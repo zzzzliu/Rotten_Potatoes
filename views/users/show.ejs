@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+</head>
+<body>
+    <nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/movies">Rotten Potatoes</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <form class="navbar-form navbar-left" action="/search" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Title" name="title">
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <% if (!currentUser) { %>
+                <li><a href="/login"><i class="fas fa-play"></i> Login</a></li>
+                <li><a href="/register"><i class="fas fa-film"></i> Sign Up</a></li>
+                <% } else { %>
+                <li><a href="/users/<%= currentUser._id %>"><i class="fab fa-earlybirds"></i> <%= currentUser.username %></a></li>
+                <li><a href="/logout"><i class="far fa-stop-circle"></i> Logout</a></li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <div class="container">
+    <% if (error && error.length > 0) { %>
+    <div class="alert alert-danger" role="alert">
+        <%= error %>
+    </div>
+    <% } %>
+    <% if (success && success.length > 0) { %>
+    <div class="alert alert-success" role="alert">
+        <%= success %>
+    </div>
+    <% } %>
+</div>
+
+    <div class="container target">
+    <div class="row">
+        <div class="col-sm-10">
+            <h1 class=""><%= user.username %></h1>
+            <br>
+        </div>
+        <div class="col-sm-2">
+            <a href="/users" class="pull-right">
+                <img title="profile image" class="img-circle img-responsive" src="http://www.rlsandbox.com/img/profile.jpg">
+            </a>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-3">
+            <ul class="list-group">
+                <li class="list-group-item text-muted" contenteditable="false">Profile</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span><%= user.created.toDateString() %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Real name</strong></span><%= user.realname %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Role</strong></span>Mashed Potato</li>
+            </ul>
+            <ul class="list-group">
+                <li class="list-group-item text-muted">Activity</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Favorites</strong></span> 13</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Comments</strong></span> <%= comments.length %></li>
+            </ul>
+        </div>
+        <div class="col-sm-9">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><%= user.username %></strong>'s Bio</div>
+                <div class="panel-body"><%= user.about %>
+                </div>
+            </div>
+            <div class="panel panel-default target">
+                <div class="panel-heading">My Favorites</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="thumbnail">
+                                <img alt="300x200" src="http://lorempixel.com/600/200/people">
+                                <div class="caption">
+                                    <h3>
+                                        Rover
+                                    </h3>
+                                    <p>
+                                        Cocker Spaniel who loves treats.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="thumbnail">
+                                <img alt="300x200" src="http://lorempixel.com/600/200/city">
+                                <div class="caption">
+                                    <h3>
+                                        Marmaduke
+                                    </h3>
+                                    <p>
+                                        Is just another friendly dog.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="thumbnail">
+                                <img alt="300x200" src="http://lorempixel.com/600/200/sports">
+                                <div class="caption">
+                                    <h3>
+                                        Rocky
+                                    </h3>
+                                    <p>
+                                        Loves catnip and naps. Not fond of children.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default target">
+                <div class="panel-heading">My Comments</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <% for (var j = 0; j < 4; j++) { %>
+                        <div class="col-md-3">
+                            <div class="thumbnail">
+                                <a href="/movies/<%= comments[j].movie.id %>"><img src="<%= comments[j].movie.poster %>" alt=""></a>
+                                <div class="caption">
+                                    <a href="/movies/<%= comments[j].movie.id %>"><h4 class="comment-heading-at-userpage"><%= comments[j].movie.title %></h4></a>
+                                    <span>
+                                        <% for (var i = 1; i <= comments[j].rating; i++) { %>
+                                        <i class="fas fa-star"></i>
+                                        <% } %>
+                                        <% if (comments[j].rating * 2 % 2 === 1) { %>
+                                        <i class="fas fa-star-half"></i>
+                                        <% } %>
+                                    </span>
+                                    <p class="comment-text"><%= comments[j].text %></p>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                    </div>
+                    <a class="pull-right" href="/users/<%= user._id %>/comments">View More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

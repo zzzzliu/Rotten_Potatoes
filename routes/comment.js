@@ -40,6 +40,9 @@ router.post("/", middleware.isLoggedIn, function (req, res) {
                 } else {
                     comment.author.id = req.user._id;
                     comment.author.username = req.user.username;
+                    comment.movie.id = req.params.id;
+                    comment.movie.poster = movie.poster;
+                    comment.movie.title = movie.title;
                     comment.save();
                     movie.comments.push(comment._id);
                     movie.save(function (err) {

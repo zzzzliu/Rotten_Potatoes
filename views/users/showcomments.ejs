@@ -1,0 +1,32 @@
+<% include ../partials/header.ejs %>
+
+<div class="container">
+    <header class="jumbotron">
+        <div>
+            <h1>View your comments</h1>
+        </div>
+    </header>
+    <div class="row">
+        <% comments.forEach(function (comment) { %>
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <a href="/movies/<%= comment.movie.id %>"><img src="<%= comment.movie.poster %>" alt=""></a>
+                <div class="caption">
+                    <a href="/movies/<%= comment.movie.id %>"><h4 class="comment-heading-at-userpage"><%= comment.movie.title %></h4></a>
+                    <span>
+                        <% for (var i = 1; i <= comment.rating; i++) { %>
+                        <i class="fas fa-star"></i>
+                        <% } %>
+                        <% if (comment.rating * 2 % 2 === 1) { %>
+                        <i class="fas fa-star-half"></i>
+                        <% } %>
+                    </span>
+                    <p class="comment-text"><%= comment.text %></p>
+                </div>
+            </div>
+        </div>
+        <% }) %>
+    </div>
+</div>
+
+<% include ../partials/footer.ejs %>

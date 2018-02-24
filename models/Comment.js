@@ -10,6 +10,14 @@ var commentSchema = mongoose.Schema({
             ref: "User"
         },
         username: String
+    },
+    movie: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Movie"
+        },
+        poster: String,
+        title: String
     }
 });
 
