@@ -49,6 +49,7 @@ router.post("/", middleware.isLoggedIn, function (req, res) {
                             res.redirect("/movies/" + req.params.id);
                         }
                     });
+                    req.flash("success", "Successfully Created");
                     res.redirect("/movies/" + req.params.id);
                 }
             });
@@ -77,7 +78,7 @@ router.put("/:comment_id", middleware.checkCommentOwnership, function (req, res)
             req.flash("error", "Cannot update comment");
             res.redirect("back");
         } else {
-            req.flash("success", "Successfully updated");
+            req.flash("success", "Successfully Updated");
             res.redirect("/movies/" + req.params.id);
         }
     })

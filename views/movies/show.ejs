@@ -75,7 +75,7 @@
                 <div class="new-comment">
                     <hr>
                     <div class="row" style="height: 26em;">
-                        <div class="col-md-12">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
                             <iframe src="/movies/<%= movie._id %>/comments/new" frameborder="0"></iframe>
                         </div>
                     </div>
@@ -84,8 +84,8 @@
                 <% if (movie.comments) { %>
                     <% movie.comments.forEach(function (value) { %>
                     <hr>
-                    <div class="row">
-                        <div class="col-md-12">
+                    <div class="row original-comment">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
                             <strong><%= value.author.username %></strong>
                             <span class="comment-rating">
                                 <% for (var i = 1; i <= value.rating; i++) { %>
@@ -101,8 +101,15 @@
                             <form class="delete-form pull-right" action="/movies/<%= movie._id %>/comments/<%= value.id %>?_method=DELETE" method="post">
                                 <button class="btn btn-xs btn-danger">Delete</button>
                             </form>
-                            <a class="btn btn-xs btn-warning pull-right" href="/movies/<%= movie._id %>/comments/<%= value._id %>/edit">Edit</a>
+                            <button class="btn btn-xs btn-warning pull-right edit-comment-button">Edit</button>
                             <% } %>
+                        </div>
+                    </div>
+                    <div class="edit-comment">
+                        <div class="row" style="height: 26em;">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <iframe src="/movies/<%= movie._id %>/comments/<%= value._id %>/edit" frameborder="0"></iframe>
+                            </div>
                         </div>
                     </div>
                     <% })%>

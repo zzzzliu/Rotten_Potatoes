@@ -82,6 +82,6 @@ iframe {
     height: 100%;
 }
 
-.new-comment {
+.new-comment, .edit-comment {
     display: none;
 }

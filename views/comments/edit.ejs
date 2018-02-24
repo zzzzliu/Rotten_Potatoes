@@ -1,19 +1,53 @@
-<% include ../partials/header %>
+<!DOCTYPE html>
+<header>
+    <title>Rotten Potatoes</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="/stylesheets/star-rating.css">
+</header>
+<body>
 
-<div class="container">
-    <h1>Edit Comment</h1>
-    <form action="/movies/<%= movieID %>/comments/<%= comment._id %>?_method=PUT" method="post">
-        <div class="form-group">
-            <textarea class="form-control" name="comment[text]" cols="30" rows="10"><%= comment.text %></textarea>
-        </div>
-        <div class="form-group">
-            <input type="range" class="form-control" min="0" max="5" step="0.5" name="comment[rating]" value="<%= comment.rating %>">
-        </div>
-        <div class="form-group">
-            <button class="btn btn-primary btn-large btn-block">submit</button>
-        </div>
-    </form>
-    <a href="/movies/<%= movieID%>">Go Back</a>
-</div>
+<form action="/movies/<%= movieID %>/comments/<%= comment._id %>?_method=PUT" method="post" target="_parent">
+    <div class="form-group">
+        <textarea class="form-control" placeholder="Add your comment" name="comment[text]" rows="13"><%= comment.text %></textarea>
+    </div>
+
+    <fieldset class="rating form-group pull-left comment-rating">
+        <input type="radio" id="star5" name="comment[rating]" value=5 />
+        <label class = "full" for="star5" title="Awesome - 5 stars"></label>
+
+        <input type="radio" id="star4half" name="comment[rating]" value=4.5 />
+        <label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+
+        <input type="radio" id="star4" name="comment[rating]" value=4 />
+        <label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+
+        <input type="radio" id="star3half" name="comment[rating]" value=3.5 />
+        <label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+
+        <input type="radio" id="star3" name="comment[rating]" value=3 />
+        <label class = "full" for="star3" title="Meh - 3 stars"></label>
+
+        <input type="radio" id="star2half" name="comment[rating]" value=2.5 />
+        <label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+
+        <input type="radio" id="star2" name="comment[rating]" value=2 />
+        <label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+
+        <input type="radio" id="star1half" name="comment[rating]" value=1.5 />
+        <label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+
+        <input type="radio" id="star1" name="comment[rating]" value=1 />
+        <label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+
+        <input type="radio" id="starhalf" name="comment[rating]" value=0.5 />
+        <label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+    </fieldset>
+
+    <div class="form-group pull-right comment-submit">
+        <button class="btn btn-primary btn-large btn-block">submit</button>
+    </div>
+</form>
 
 <% include ../partials/footer %>
