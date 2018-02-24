@@ -83,5 +83,5 @@ iframe {
 }
 
 .new-comment {
-    height: 25.6em;
+    display: none;
 }
