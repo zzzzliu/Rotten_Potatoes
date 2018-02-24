@@ -8,7 +8,7 @@
 </header>
 <body>
 
-<form action="/movies/<%= movie._id %>/comments" method="post">
+<form action="/movies/<%= movie._id %>/comments" method="post" target="_parent">
     <div class="form-group">
         <textarea class="form-control" placeholder="Add your comment" name="comment[text]" rows="13"></textarea>
     </div>
