@@ -6,7 +6,17 @@ var userSchema = new mongoose.Schema({
     realname: String,
     password: String,
     about: String,
-    created: {type: Date, default: Date.now}
+    created: {type: Date, default: Date.now},
+    favorites: [
+        {
+            id: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Movie"
+            },
+            poster: String,
+            title: String
+        }
+    ]
 });
 
 userSchema.plugin(passportLocalMongoose);

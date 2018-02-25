@@ -89,3 +89,7 @@ iframe {
 .comment-heading-at-userpage {
     margin-bottom: 1%;
 }
+
+.not-yet-favorite, .already-favorite {
+    color: #e01f34;
+}

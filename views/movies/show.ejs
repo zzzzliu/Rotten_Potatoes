@@ -21,6 +21,13 @@
                             (<%= movie._year_data %>)
                             <% } %>
                         </span>
+                        <a href="/movies/<%= movie.id %>/favorite">
+                            <% if (currentUser && alreadyFavorite) { %>
+                            <i class="fas fa-heart already-favorite"></i>
+                            <% } else { %>
+                            <i class="far fa-heart not-yet-favorite"></i>
+                            <% } %>
+                        </a>
                     </h2>
                 </div>
             </div>

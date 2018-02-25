@@ -19,7 +19,7 @@ router.get("/:id", middleware.isLoggedIn, function (req, res) {
                     req.flash("error", "Cannot find the user's comments");
                     req.redirect("back");
                 } else {
-                    res.render("users/show", {user: user, comments:comments});
+                    res.render("users/show", {user: user, comments: comments});
                 }
             });
         }
@@ -46,5 +46,11 @@ router.get("/:id/comments", middleware.isLoggedIn, function (req, res) {
         }
     });
 });
+
+// Show favorites of the user
+router.get("/:id/favorites", middleware.isLoggedIn, function (req, res) {
+    res.render("users/showfavorites", {favorites: req.user.favorites});
+});
+
 
 module.exports = router;

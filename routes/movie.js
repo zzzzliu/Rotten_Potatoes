@@ -23,7 +23,18 @@ router.get("/:id", function (req, res) {
             if (err) {
                 console.log(err);
             } else {
-                res.render("movies/show", {movie: movie});
+                var alreadyFavorite = false;
+                if (req.user) {
+                    var index = -1;
+                    for (var i = 0; i < req.user.favorites.length; i++) {
+                        if (req.user.favorites[i].id.equals(movie._id)) {
+                            index = i;
+                        }
+                    }
+                    if (index !== -1)
+                        alreadyFavorite = true;
+                }
+                res.render("movies/show", {movie: movie, alreadyFavorite: alreadyFavorite});
             }
         }
     );
@@ -56,6 +67,40 @@ router.post("/:imdbid", function (req, res) {
             res.redirect("/movies/" + movie[0]._id);
         }
     });
+});
+
+// Toggle favorite
+router.get("/:id/favorite", middleware.isLoggedIn, function (req, res) {
+    Movie.findById(req.params.id).populate("comments").exec(
+        function (err, movie) {
+            if (err) {
+                console.log(err);
+                req.flash("error", "Cannot add to favorites");
+                res.redirect("back");
+            } else {
+                var index = -1;
+                for (var i = 0; i < req.user.favorites.length; i++) {
+                    if (req.user.favorites[i].id.equals(movie._id)) {
+                        index = i;
+                    }
+                }
+                if (index === -1) {
+                    req.user.favorites.push({
+                        id: movie._id,
+                        poster: movie.poster,
+                        title: movie.title
+                    });
+                } else {
+                    req.user.favorites.splice(index, 1);
+                }
+                req.user.save(function (err) {
+                    if (err)
+                        console.log(err);
+                });
+            }
+        }
+    );
+    res.redirect("back");
 });
 
 module.exports = router;
