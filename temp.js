@@ -1,36 +1,26 @@
-var imdb = require('imdb-api'),
-    Movie = require('./models/Movie'),
-    mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost/rotten_potatoes");
+var nodemailer = require("nodemailer");
 
+// configure SMTP
+var smtpTransport = nodemailer.createTransport({
+    service: "Gmail",
+    auth: {
+        user: "rotten.potatoes.movie.review",
+        pass: "rottenPotatoesAdmin!"
+    }
+});
 
-var title = 'jumanji';
-// imdb.search({title: title}, {apiKey: '44e45971', timeout: 30000}).then(function (value) {
-//     console.log(value.results);
-// }).catch(function (error) {
-//     if (error) {
-//         console.log(error);
-//     }
-// });
-//
-// Movie.find({imdbid: 'tt2283462'}, function (err, movie) {
-//     if (err) {
-//         console.log(err);
-//     } else if (movie.length === 0) {
-//         console.log("No movie");
-//     } else {
-//         console.log(movie);
-//     }
-// });
-
-imdb.search({title: title}, {apiKey: '44e45971', timeout: 30000}).then(function (value) {
-    value.results.sort(function (a, b) {
-        var pa = a.poster;
-        var pb = b.poster;
-        if (pa == 'N/A')
-            return 1;
-        else
-            return -1;
-    });
-    console.log(value);
-}).catch(console.log);
+rand=Math.floor((Math.random() * 100) + 54);
+link="http://localhost/verify?id="+rand;
+mailOptions={
+    to : "liu.hongz@husky.neu.edu",
+    subject : "Please confirm your Email account",
+    html : "Hello,<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>"
+};
+console.log(mailOptions);
+smtpTransport.sendMail(mailOptions, function(error, response){
+    if(error){
+        console.log(error);
+    }else{
+        console.log("Message sent: " + response.message);
+    }
+});

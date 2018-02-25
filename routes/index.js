@@ -1,10 +1,21 @@
 var express = require("express"),
     router = express.Router(),
     imdb = require("imdb-api"),
-    passport = require("passport");
+    passport = require("passport"),
+    nodemailer = require("nodemailer");
 
 var User = require("../models/User"),
     middleware = require("../middleware");
+
+
+// configure SMTP
+var smtpTransport = nodemailer.createTransport({
+    service: "Gmail",
+    auth: {
+        user: "rotten.potatoes.movie.review",
+        pass: "rottenPotatoesAdmin!"
+    }
+});
 
 
 // Homepage
@@ -32,16 +43,59 @@ router.get("/register", function (req, res) {
 });
 
 router.post("/register", function (req, res) {
-    var newUser = new User({username: req.body.username, about: req.body.about, realname: req.body.realname});
+    var newUser = new User({
+        username: req.body.username,
+        realname: req.body.firstname + " " + req.body.lastname,
+        email: req.body.email,
+        about: req.body.about,
+        active: false
+    });
     User.register(newUser, req.body.password, function (err, user) {
         if (err) {
             req.flash("error", err.message);
             return res.redirect("/register");
         } else {
             passport.authenticate("local")(req, res, function () {
-                req.flash("success", "Welcome to Rotten Potatoes, " + user.username);
+                req.flash("success", "Welcome to Rotten Potatoes, " + user.username + "! Please verify your email.");
+
+                var host = req.get('host');
+                var link = "http://" + host + "/verify?id=" + req.user.salt;
+                var mailOptions = {
+                    to : req.body.email,
+                    subject : "Please Confirm Your Email Account",
+                    html : "Hello, " + req.body.username +
+                           "<br><br>" +
+                           "Please Click on the link to verify your email." +
+                           "<br><br>" +
+                           "<a href=" + link + ">Click here to verify</a>" +
+                           "<br><br>" +
+                           "Best, " +
+                           "<br>" +
+                           "Rotten Potatoes"
+                };
+                smtpTransport.sendMail(mailOptions, function(error, response){
+                    if(error) {
+                        console.log(error);
+                    } else {
+                        console.log(response);
+                    }
+                });
                 res.redirect("/movies");
             });
+        }
+    });
+});
+
+router.get('/verify', function (req, res) {
+    User.findOneAndUpdate({salt: req.query.id}, {active: true}, function (err, user) {
+        if (err) {
+            console.log(err);
+            req.flash("error", "Cannot Verify the Email");
+            res.end("<h1>Cannot Verify the Email</h1>");
+        } else {
+            console.log("Successfully Verified");
+            req.flash("success", "Successfully Verified");
+            res.redirect("/login");
         }
     });
 });

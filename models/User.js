@@ -4,9 +4,11 @@ var mongoose = require("mongoose"),
 var userSchema = new mongoose.Schema({
     username: String,
     realname: String,
+    email: String,
     password: String,
     about: String,
     created: {type: Date, default: Date.now},
+    active: Boolean,
     favorites: [
         {
             id: {

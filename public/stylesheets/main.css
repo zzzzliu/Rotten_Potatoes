@@ -122,3 +122,11 @@ iframe {
     font-size: 8em;
     text-align: center;
 }
+
+.success {
+    color: #19b9e7;
+}
+
+.error {
+    color: #e01f34;
+}

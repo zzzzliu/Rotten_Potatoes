@@ -18,7 +18,7 @@ $(document).ready(function () {
     });
 });
 
-$( document ).ready(function() {
+$(document).ready(function() {
     var heights = $("#404-error-message").map(function() {
             return $(this).height();
         }).get(),
@@ -26,4 +26,15 @@ $( document ).ready(function() {
         maxHeight = Math.max.apply(null, heights);
 
     $("#quote").height(maxHeight);
+});
+
+$(document).ready(function() {
+    var wantSameHeight = $(".username-in-userpage");
+    var heights = wantSameHeight.next().map(function() {
+            return $(this).height();
+        }).get(),
+
+        maxHeight = Math.max.apply(null, heights);
+
+    wantSameHeight.height(maxHeight);
 });

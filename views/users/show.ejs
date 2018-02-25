@@ -72,6 +72,16 @@
                 <li class="list-group-item text-muted" contenteditable="false">Profile</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span><%= user.created.toDateString() %></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Real name</strong></span><%= user.realname %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Email</strong></span><%= user.email %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Verified</strong></span>
+                    <% if(user.active) { %>
+                    <span class="success">
+                    <% } else { %>
+                    <span class="error">
+                    <% } %>
+                    <%= user.active %>
+                    </span>
+                </li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Role</strong></span>Mashed Potato</li>
             </ul>
             <ul class="list-group">
