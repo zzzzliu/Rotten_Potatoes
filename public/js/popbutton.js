@@ -10,3 +10,10 @@ $(document).ready(function () {
         $(this).parent().parent().next().toggle();
     });
 });
+
+$(document).ready(function () {
+    $('.edit-about-button').click(function () {
+        $(this).parent().next().toggle();
+        $(this).parent().next().next().toggle();
+    });
+});

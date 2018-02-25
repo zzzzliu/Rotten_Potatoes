@@ -52,5 +52,21 @@ router.get("/:id/favorites", middleware.isLoggedIn, function (req, res) {
     res.render("users/showfavorites", {favorites: req.user.favorites});
 });
 
+// Edit route
+router.get("/:id/edit", function (req, res) {
+    res.render("users/edit", {user: req.user});
+});
+
+// Update route
+router.put("/:id", function (req, res) {
+    User.findByIdAndUpdate(req.params.id, {about: req.body.about}, function (err, newUser) {
+        if (err) {
+            req.flash("error", "Cannot update user");
+        } else {
+            req.flash("success", "Successfully Updated");
+        }
+        res.redirect("/users/" + req.params.id);
+    });
+});
 
 module.exports = router;

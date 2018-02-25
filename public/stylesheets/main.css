@@ -82,7 +82,7 @@ iframe {
     height: 100%;
 }
 
-.new-comment, .edit-comment {
+.new-comment, .edit-comment, .edit-about {
     display: none;
 }
 
