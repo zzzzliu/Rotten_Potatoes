@@ -24,8 +24,7 @@ app.use(flash());
 
 
 // configure database
-// mongoose.connect("mongodb://localhost/rotten_potatoes");
-mongoose.connect("mongodb://admin:iAmFullStack@ds247648.mlab.com:47648/rotten_potatoes");
+mongoose.connect(process.env.DBURL || "mongodb://localhost/rotten_potatoes");
 
 // configure passport
 app.use(require("express-session")({
