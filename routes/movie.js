@@ -100,9 +100,9 @@ router.get("/:id/favorite", middleware.isLoggedIn, function (req, res) {
                     req.user.save(function (err) {
                         if (err)
                             console.log(err);
-                    });
-                    res.redirect("back");
-                }
+                        else
+                            res.redirect("/movies/" + req.params.id);
+                    });}
             }
         }
     );
