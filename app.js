@@ -6,6 +6,7 @@ var express = require("express"),
     methodOverride = require('method-override'),
     localStrategy = require('passport-local'),
     flash = require('connect-flash');
+    require('dotenv').config();
 
 var indexRoutes = require("./routes/index"),
     movieRoutes = require("./routes/movie"),

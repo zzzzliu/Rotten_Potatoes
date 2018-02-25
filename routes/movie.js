@@ -48,7 +48,6 @@ router.post("/:imdbid", function (req, res) {
             req.flash("error", "Cannot find detailed information about this movie");
             res.redirect("/movies");
         } else if (movie.length === 0) {
-            console.log(process.env.OMDBAPI)
             imdb.getById(req.params.imdbid, {apiKey: process.env.OMDBAPI, timeout: 30000}).then(function (value) {
                 Movie.create(value, function (err, newMovie) {
                     if (err) {
