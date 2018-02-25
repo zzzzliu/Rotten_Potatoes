@@ -78,29 +78,34 @@ router.get("/:id/favorite", middleware.isLoggedIn, function (req, res) {
                 req.flash("error", "Cannot add to favorites");
                 res.redirect("back");
             } else {
-                var index = -1;
-                for (var i = 0; i < req.user.favorites.length; i++) {
-                    if (req.user.favorites[i].id.equals(movie._id)) {
-                        index = i;
-                    }
-                }
-                if (index === -1) {
-                    req.user.favorites.push({
-                        id: movie._id,
-                        poster: movie.poster,
-                        title: movie.title
-                    });
+                if (!req.user.active) {
+                    req.flash("error", "Please verify your email address");
+                    res.redirect("back");
                 } else {
-                    req.user.favorites.splice(index, 1);
+                    var index = -1;
+                    for (var i = 0; i < req.user.favorites.length; i++) {
+                        if (req.user.favorites[i].id.equals(movie._id)) {
+                            index = i;
+                        }
+                    }
+                    if (index === -1) {
+                        req.user.favorites.push({
+                            id: movie._id,
+                            poster: movie.poster,
+                            title: movie.title
+                        });
+                    } else {
+                        req.user.favorites.splice(index, 1);
+                    }
+                    req.user.save(function (err) {
+                        if (err)
+                            console.log(err);
+                    });
+                    res.redirect("back");
                 }
-                req.user.save(function (err) {
-                    if (err)
-                        console.log(err);
-                });
             }
         }
     );
-    res.redirect("back");
 });
 
 module.exports = router;
