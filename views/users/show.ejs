@@ -4,6 +4,7 @@
     <title>User Profile</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link href='http://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'>
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <link rel="stylesheet" href="/stylesheets/main.css">
 </head>
@@ -55,9 +56,8 @@
 
     <div class="container target">
     <div class="row">
-        <div class="col-sm-10">
-            <h1 class=""><%= user.username %></h1>
-            <br>
+        <div class="col-sm-10 username-in-userpage">
+            <h1><%= user.username %></h1>
         </div>
         <div class="col-sm-2">
             <a href="/users" class="pull-right">
@@ -91,7 +91,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <% for (var k = 0; k < Math.min(4, user.favorites.length); k++) { %>
-                        <div class="col-md-3">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
                             <div class="thumbnail">
                                 <a href="/movies/<%= user.favorites[k].id %>"><img src="<%= user.favorites[k].poster %>" alt=""></a>
                                 <div class="caption">
@@ -109,7 +109,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <% for (var j = 0; j < Math.min(4, comments.length); j++) { %>
-                        <div class="col-md-3">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
                             <div class="thumbnail">
                                 <a href="/movies/<%= comments[j].movie.id %>"><img src="<%= comments[j].movie.poster %>" alt=""></a>
                                 <div class="caption">
