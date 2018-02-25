@@ -80,7 +80,7 @@ router.get("/logout", function (req, res) {
 
 // Not Found Page
 router.get("*", function (req, res) {
-    res.send("Cannot find the page.");
+    res.render("notfound");
 });
 
 module.exports = router;

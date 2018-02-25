@@ -17,3 +17,13 @@ $(document).ready(function () {
         $(this).parent().next().next().toggle();
     });
 });
+
+$( document ).ready(function() {
+    var heights = $("#404-error-message").map(function() {
+            return $(this).height();
+        }).get(),
+
+        maxHeight = Math.max.apply(null, heights);
+
+    $("#quote").height(maxHeight);
+});
