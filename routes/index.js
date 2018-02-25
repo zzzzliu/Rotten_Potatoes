@@ -12,8 +12,8 @@ var User = require("../models/User"),
 var smtpTransport = nodemailer.createTransport({
     service: "Gmail",
     auth: {
-        user: "rotten.potatoes.movie.review",
-        pass: "rottenPotatoesAdmin!"
+        user: process.env.EMAILUSER,
+        pass: process.env.EMAILPASSWORD
     }
 });
 
